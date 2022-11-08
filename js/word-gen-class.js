@@ -1,3 +1,4 @@
+// Main WordGen class
 class WordGen {
   #consonants; #vowels;
 
@@ -65,6 +66,13 @@ class WordGen {
   };
 }
 
+/**
+ * WordGen but with attributes, or something
+ * 
+ * Both functions returns an object
+ * 
+ * `{ lang: "<lang>", type: "<type>", word: "<word>" }`
+ */
 class ObjectWordGen extends WordGen {
   constructor() {
     super();
