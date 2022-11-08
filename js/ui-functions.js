@@ -107,10 +107,9 @@ const showWords = (words, units, mode, wordListElement, sort = SORT.NONE) => {
   }
 
   if (sort === SORT.ASC) {
-    wordsArray.sort();
+    wordsArray.sort((a, b) => a.word > b.word);
   } else if (sort === SORT.DESC) {
-    wordsArray.sort();
-    wordsArray.reverse();
+    wordsArray.sort((a, b) => a.word < b.word);
   }
 
   wordsArray.forEach(item => {
