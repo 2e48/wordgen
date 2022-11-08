@@ -94,3 +94,8 @@ button.reroll-words {
 .generated-word[data-alt] {
     color: lightblue;
 }
+
+.generated-word[data-marked="true"] {
+    color: red;
+    text-decoration: underline;
+}
