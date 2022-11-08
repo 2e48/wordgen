@@ -12,7 +12,11 @@ const appendWordsTo = function ({
   const span = document.createElement('span');
   span.className = "generated-word";
   span.innerHTML = word;
-  span.dataset.wordObject = JSON.stringify(data);
+
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries
+  for (const [key, value] of Object.entries(data)) {
+    span.dataset[key] = value;
+  }
 
   if (hasFunction) {
     span.setAttribute('onclick', onClickFunc);
@@ -22,11 +26,11 @@ const appendWordsTo = function ({
 };
 
 const faveWord = function (elem) {
-  const dataObj = JSON.parse(elem.dataset.wordObject);
+  const dataObj = elem.dataset;
   let word = dataObj.word;
 
   if (dataObj.lang !== "standard" && japShowRaw.checked) {
-    word += ` (${dataObj.alt})`;
+    word = `${dataObj.alt}`;
   }
 
   if (!faveHandler.exists(dataObj.word)) {
@@ -143,7 +147,7 @@ const iterateJapWordList = (list, isShowingRaw, outputDiv) => {
     let string = obj.word;
 
     if (obj.lang !== "standard") {
-      string = isShowingRaw ? `${obj.word} (${obj.alt})` : `${obj.word}`;
+      string = isShowingRaw ? `${obj.alt}` : `${obj.word}`;
     }
 
     appendWordsTo({
