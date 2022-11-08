@@ -39,18 +39,25 @@ const faveWord = function (elem) {
       element: faveWordListDiv,
       word: word,
       data: dataObj,
-      onClickFunc: 'unfaveWord(this);',
+      onClickFunc: 'markWord(this);',
     });
   }
-
-  console.log(faveHandler.listAll());
 };
 
-const unfaveWord = function (elem) {
-  const dataObj = JSON.parse(elem.dataset.wordObject);
-  let word = dataObj.word;
-  faveHandler.remove(word);
-  elem.parentElement.removeChild(elem);
+const markWord = function (elem) {
+  // TODO: please clean this mess up, holy fuck
+  const isMarked = elem.dataset.marked;
+  let value = true;
+
+  if (!isMarked) {
+    value = true;
+  } else if (isMarked === "true") {
+    value = false
+  } else {
+    value = true
+  }
+
+  elem.dataset.marked = value;
 };
 
 const mainDivs = document.getElementsByClassName("generators");
@@ -184,5 +191,30 @@ const bindFunctionsToButtons = () => {
     });
   }
 };
-
 bindFunctionsToButtons();
+
+const faveDelete = document.getElementById("favorite-delete");
+
+// TODO: I feel like this could be better
+faveDelete.addEventListener("click", () => {
+  const words = faveWordListDiv.children;
+  let toRemove = [];
+
+  // if we do not have an external list of marked stuff
+  // the for loop finishes before iterating through everthing...
+  // ... if something gets deleted
+
+  // if we remove one the code points to the next
+  // example: 2/4 *delete* 3/3 (the item 4 isnt reached)
+  for (const word of words) {
+    const val = word.dataset.word;
+    const isMarked = word.dataset.marked;
+
+    if (isMarked === "true") {
+      faveHandler.remove(val);
+      toRemove.push(word);
+    }
+  }
+
+  toRemove.forEach(elem => elem.parentElement.removeChild(elem));
+});
