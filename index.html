@@ -11,10 +11,14 @@
 </head>
 
 <body>
+
+  <!-- language toggle -->
   <div class="main-content filters">
     <button class="top-buttons" data-show-this-element="english-random-container">Standard</button>
     <button class="top-buttons" data-show-this-element="japanese-random-container">Japanese</button>
   </div>
+
+  <!-- english gen controls -->
   <div class="main-content generators" id="english-random-container">
     <div class="filters">
       Units: <select id="generator-mode">
@@ -39,6 +43,7 @@
     <div class="word-list" id="english-random-words"></div>
   </div>
 
+  <!-- japanese word gen controls -->
   <div class="main-content generators hidden" id="japanese-random-container">
     <div class="filters">
       <select id="japanese-alphabet-type">
@@ -59,11 +64,13 @@
     <div class="word-list" id="japanese-random-words"></div>
   </div>
 
+  <!-- fav words bank -->
   <div class="main-content faves">
     Favorited words:
     <div class="word-list" id="fave-words"></div>
   </div>
 
+  <!-- scripts here -->
   <script src="js/word-gen.js"></script>
   <script src="js/japanese-gen.js"></script>
   <script src="js/fave-handler.js"></script>
