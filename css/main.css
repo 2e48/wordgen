@@ -83,10 +83,14 @@ button.reroll-words {
 }
 
 .generated-word {
+    color: white;
     display: block;
 }
 
 .generated-word:hover {
-    color: yellowgreen;
     font-weight: 700;
+}
+
+.generated-word[data-alt] {
+    color: lightblue;
 }
