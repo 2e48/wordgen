@@ -181,13 +181,20 @@ const showJapWords = (type, length, count, outputDiv) => {
 };
 
 const updateDisplayedWords = () => {
-  japWordListDiv.innerHTML = "";
-  faveWordListDiv.innerHTML = "";
-  // TODO: rewrite the fave list to support objects
-
   const isShowingRaw = japShowRaw.checked;
-  iterateJapWordList(japWordList, isShowingRaw, japWordListDiv);
-  iterateJapWordList(faveHandler.listAll(), isShowingRaw, faveWordListDiv);
+
+  const wordDivs = [
+    japWordListDiv, faveWordListDiv
+  ];
+
+  wordDivs.forEach(divs => {
+    let children = divs.children;
+    for (const child of children) { 
+      const word = child.dataset['word'];
+      const alt = child.dataset['alt'] ?? word;
+      child.innerHTML = isShowingRaw ? alt : word;
+    }
+  });
 };
 japShowRaw.addEventListener("click", updateDisplayedWords);
 
