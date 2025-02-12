@@ -91,8 +91,16 @@ button.reroll-words {
     font-weight: 700;
 }
 
-.generated-word[data-alt] {
+.generated-word[data-lang="japanese"] {
     color: lightblue;
+}
+
+.generated-word[data-type="natural"] {
+    color: lightgreen
+}
+
+.generated-word[data-type="syllabic"] {
+    color: lightgoldenrodyellow
 }
 
 .generated-word[data-marked="true"] {
