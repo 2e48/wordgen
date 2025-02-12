@@ -149,17 +149,25 @@ const japWordGen = new ObjectJapaneseWordGen();
 let japWordList = [];
 
 const iterateJapWordList = (list, isShowingRaw, outputDiv) => {
+  const isAlreadyInFave = outputDiv === faveWordListDiv;
+  
   list.forEach(obj => {
     let string = obj.word;
+    let clickFunc = 'faveWord(this);';
 
     if (obj.lang !== "standard") {
       string = isShowingRaw ? `${obj.alt}` : `${obj.word}`;
+    }
+
+    if (isAlreadyInFave) {
+      clickFunc = 'markWord(this);';
     }
 
     appendWordsTo({
       element: outputDiv,
       word: string,
       data: obj,
+      onClickFunc: clickFunc,
     });
   });
 };
