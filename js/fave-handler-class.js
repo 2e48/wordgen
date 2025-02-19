@@ -41,7 +41,7 @@ class WordList {
   }
 }
 
-class FaveWords extends WordList {
+export class FaveWords extends WordList {
   constructor() {
     super();
   }

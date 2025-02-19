@@ -1,3 +1,5 @@
+import { WordGen } from "./word-gen-class.js";
+
 class JapaneseWordGen extends WordGen {
   #characters;
   constructor() {
@@ -103,7 +105,7 @@ class JapaneseWordGen extends WordGen {
   }
 }
 
-class ObjectJapaneseWordGen extends JapaneseWordGen {
+export class ObjectJapaneseWordGen extends JapaneseWordGen {
   constructor() {
     super();
   }

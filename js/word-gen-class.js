@@ -1,5 +1,5 @@
 // Main WordGen class
-class WordGen {
+export class WordGen {
   #consonants; #vowels;
 
   constructor() {
@@ -73,7 +73,7 @@ class WordGen {
  * 
  * `{ lang: "<lang>", type: "<type>", word: "<word>" }`
  */
-class ObjectWordGen extends WordGen {
+export class ObjectWordGen extends WordGen {
   constructor() {
     super();
   }

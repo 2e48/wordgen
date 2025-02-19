@@ -1,3 +1,7 @@
+import { ObjectWordGen } from "./word-gen-class.js";
+import { ObjectJapaneseWordGen } from "./japanese-gen-class.js";
+import { FaveWords } from "./fave-handler-class.js";
+
 // utility functions
 const faveWordListDiv = document.getElementById('fave-words');
 const faveHandler = new FaveWords();
@@ -7,7 +11,7 @@ const appendWordsTo = function ({
   word,
   data,
   hasFunction = true,
-  onClickFunc = 'faveWord(this);',
+  onClickFunc = faveWord,
 } = {}) {
   const span = document.createElement('span');
   span.className = "generated-word";
@@ -19,7 +23,9 @@ const appendWordsTo = function ({
   }
 
   if (hasFunction) {
-    span.setAttribute('onclick', onClickFunc);
+    span.addEventListener('click', function () {
+      onClickFunc(this);
+    });
   }
 
   element.appendChild(span);
@@ -39,7 +45,7 @@ const faveWord = function (elem) {
       element: faveWordListDiv,
       word: word,
       data: dataObj,
-      onClickFunc: 'markWord(this);',
+      onClickFunc: markWord,
     });
   }
 };
@@ -153,14 +159,14 @@ const iterateJapWordList = (list, isShowingRaw, outputDiv) => {
   
   list.forEach(obj => {
     let string = obj.word;
-    let clickFunc = 'faveWord(this);';
+    let clickFunc = faveWord;
 
     if (obj.lang !== "standard") {
       string = isShowingRaw ? `${obj.alt}` : `${obj.word}`;
     }
 
     if (isAlreadyInFave) {
-      clickFunc = 'markWord(this);';
+      clickFunc = markWord;
     }
 
     appendWordsTo({
